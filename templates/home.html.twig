@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title%} books {% endblock %}
+
+{% block body %}
+<center><h1>liste des books</h1></center>
+  {% if books %}
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+         <th>Titre</th>
+         <th>Description</th>
+        <th>Update</th>
+        <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%  for book in books %}
+          <tr>
+            <td>{{ book.titre }}</td>
+            <td>{{ book.description }}</td>
+            <td><a href="/book/edit/{{ book.id }}" class="btn btn-secondary" data-id="{{ book.id }}">Edit</a></td>
+            <td><a href="/book/delete/{{ book.id }}" class="btn btn-danger delete-article" data-id="{{ book.id }}">Delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Articles yok</p>
+  {% endif %}
+<a href="/new" ><button type="button" class="btn btn-primary">new livre</button></a>
+{% endblock %}
